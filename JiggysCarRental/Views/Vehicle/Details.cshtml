@@ -1,0 +1,107 @@
+@model JiggysCarRental.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="/images/vehicles/@Html.DisplayFor(model => model.Image)" class="img-thumbnail" alt="...">
+            </div>
+            <div class="col">
+                <h1 class="text-success">@Html.DisplayFor(model => model.VehicleName)</h1>
+                <p> @Html.DisplayFor(model => model.Details)</p>
+                <h2>$@Html.DisplayFor(model => model.RentCost)</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">@Html.DisplayFor(model => model.NumberOfPassengers) Passengers</li>
+                    <li class="list-group-item">@Html.DisplayFor(model => model.NumberOfPassengers) Large bags</li>
+                    @if (Model.UsbAdapter)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.UsbAdapter)</li>
+                    }
+                    @if (Model.ReverseCamera)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.ReverseCamera)</li>
+                    }
+                    @if (Model.PushStart)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.PushStart)</li>
+                    }
+                    @if (Model.Bluetooth)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Bluetooth)</li>
+                    }
+                    @if (Model.ToolsControl)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.ToolsControl)</li>
+                    }
+                    @if (Model.SteeringControl)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.SteeringControl)</li>
+                    }
+                    @if (Model.ThermalControl)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.ThermalControl)</li>
+                    }
+                    @if (Model.HeatedSeat)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.HeatedSeat)</li>
+                    }
+                    @if (Model.AutomaticTransmission)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.AutomaticTransmission)</li>
+                    }
+                    @if (Model.Aux)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Aux)</li>
+                    }
+                    @if (Model.FourWheelDrive)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.FourWheelDrive)</li>
+                    }
+                    @if (Model.LeatherSeats)
+                    {
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.LeatherSeats)</li>
+                    }
+                </ul>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label asp-for="EndDateAvailable" class="control-label"></label>
+                                <input asp-for="EndDateAvailable" class="form-control" />
+                                <span asp-validation-for="EndDateAvailable" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.StartDateAvailable)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.StartDateAvailable)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.EndDateAvailable)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.EndDateAvailable)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

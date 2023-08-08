@@ -1,0 +1,74 @@
+@model IEnumerable<JiggysCarRental.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row mt-4">
+    <div class="col-sm-8 offset-md-2">
+        <h1 class="text-success">Vehicle Dashboard</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VehicleName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RentCost)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumberOfPassengers)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NumberOLargeBags)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDateAvailable)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndDateAvailable)
+                    </th>
+                    <th>
+                        <a asp-action="Upsert" class="btn btn-sm btn-success"> <i class="fa-solid fa-plus"></i>New</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VehicleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RentCost)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumberOfPassengers)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumberOLargeBags)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDateAvailable)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDateAvailable)
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-route-id="@item.Id">
+                                <div class="btn-group btn-group-sm">
+                                    <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary"><i class="fa-solid fa-info"></i></a>
+                                    <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete this record?')">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
