@@ -106,6 +106,19 @@ namespace JiggysCarRental.Controllers
             return View(vehicle);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(RentalViewModel rentalViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(rentalViewModel.Rental);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(rentalViewModel.Rental);
+        }
+
         // GET: Vehicle/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

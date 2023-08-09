@@ -1,102 +1,123 @@
-@model JiggysCarRental.Models.Vehicle
+@model JiggysCarRental.Models.ViewModel.RentalViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<div class="mt-5">
+<div class="mt-5 min-vh-100">
+    <div>
+        @Html.ValidationSummary()
+    </div>
     <div class="container">
         <div class="row">
             <div class="col">
-                <img src="/images/vehicles/@Html.DisplayFor(model => model.Image)" class="img-thumbnail" alt="...">
+                <img src="/images/vehicles/@Html.DisplayFor(model => model.Vehicle.Image)" class="img-thumbnail" alt="...">
             </div>
             <div class="col">
-                <h1 class="text-success">@Html.DisplayFor(model => model.VehicleName)</h1>
-                <p> @Html.DisplayFor(model => model.Details)</p>
-                <h2>$@Html.DisplayFor(model => model.RentCost)</h2>
+                <h1 class="text-success">@Html.DisplayFor(model => model.Vehicle.VehicleName)</h1>
+                <p> @Html.DisplayFor(model => model.Vehicle.Details)</p>
+                <h2>$@Html.DisplayFor(model => model.Vehicle.RentCost)</h2>
                 <ul class="list-group">
-                    <li class="list-group-item">@Html.DisplayFor(model => model.NumberOfPassengers) Passengers</li>
-                    <li class="list-group-item">@Html.DisplayFor(model => model.NumberOfPassengers) Large bags</li>
-                    @if (Model.UsbAdapter)
+                    <li class="list-group-item">@Html.DisplayFor(model => model.Vehicle.NumberOfPassengers) Passengers</li>
+                    <li class="list-group-item">@Html.DisplayFor(model => model.Vehicle.NumberOfPassengers) Large bags</li>
+                    @if (Model.Vehicle.UsbAdapter)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.UsbAdapter)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.UsbAdapter)</li>
                     }
-                    @if (Model.ReverseCamera)
+                    @if (Model.Vehicle.ReverseCamera)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.ReverseCamera)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.ReverseCamera)</li>
                     }
-                    @if (Model.PushStart)
+                    @if (Model.Vehicle.PushStart)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.PushStart)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.PushStart)</li>
                     }
-                    @if (Model.Bluetooth)
+                    @if (Model.Vehicle.Bluetooth)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Bluetooth)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.Bluetooth)</li>
                     }
-                    @if (Model.ToolsControl)
+                    @if (Model.Vehicle.ToolsControl)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.ToolsControl)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.ToolsControl)</li>
                     }
-                    @if (Model.SteeringControl)
+                    @if (Model.Vehicle.SteeringControl)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.SteeringControl)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.SteeringControl)</li>
                     }
-                    @if (Model.ThermalControl)
+                    @if (Model.Vehicle.ThermalControl)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.ThermalControl)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.ThermalControl)</li>
                     }
-                    @if (Model.HeatedSeat)
+                    @if (Model.Vehicle.HeatedSeat)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.HeatedSeat)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.HeatedSeat)</li>
                     }
-                    @if (Model.AutomaticTransmission)
+                    @if (Model.Vehicle.AutomaticTransmission)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.AutomaticTransmission)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.AutomaticTransmission)</li>
                     }
-                    @if (Model.Aux)
+                    @if (Model.Vehicle.Aux)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Aux)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.Aux)</li>
                     }
-                    @if (Model.FourWheelDrive)
+                    @if (Model.Vehicle.FourWheelDrive)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.FourWheelDrive)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.FourWheelDrive)</li>
                     }
-                    @if (Model.LeatherSeats)
+                    @if (Model.Vehicle.LeatherSeats)
                     {
-                        <li class="list-group-item">@Html.DisplayNameFor(model => model.LeatherSeats)</li>
+                        <li class="list-group-item">@Html.DisplayNameFor(model => model.Vehicle.LeatherSeats)</li>
                     }
                 </ul>
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group">
-                                <label asp-for="EndDateAvailable" class="control-label"></label>
-                                <input asp-for="EndDateAvailable" class="form-control" />
-                                <span asp-validation-for="EndDateAvailable" class="text-danger"></span>
+                <form asp-action="Details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col mt-4">
+                                <input asp-for="Vehicle.VehicleName" class="form-control" hidden />
+                                <input asp-for="Vehicle.RentCost" class="form-control" hidden />
+                                <div class="form-group">
+                                    <label asp-for="Rental.PickupDate" class="control-label"></label>
+                                    <input asp-for="Rental.PickupDate" class="form-control" max="@Model.Vehicle.EndDateAvailable.ToString("yyyy-MM-ddTHH:mm")" min="@Model.Vehicle.StartDateAvailable.ToString("yyyy-MM-ddTHH:mm")" />
+                                    <span asp-validation-for="Rental.PickupDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col mt-4">
+                                <div class="form-group">
+                                    <label asp-for="Rental.ReturnDate" class="control-label"></label>
+                                    <input asp-for="Rental.ReturnDate" class="form-control" max="@Model.Vehicle.EndDateAvailable.ToString("yyyy-MM-ddTHH:mm")" min="@Model.Vehicle.StartDateAvailable.ToString("yyyy-MM-ddTHH:mm")" />
+                                    <span asp-validation-for="Rental.PickupDate" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <dl class="row">
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.StartDateAvailable)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.StartDateAvailable)
-                        </dd>
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.EndDateAvailable)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.EndDateAvailable)
-                        </dd>
-                    </dl>
-                </div>
-            </div>
-            <div>
-                <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-                <a asp-action="Index">Back to List</a>
+                    <div class="row mt-2">
+                        <h3 class="font-weight-bold">Add Ons</h3>
+                        <div class="col-md-6">
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="Rental.GPSNavigation" /> @Html.DisplayNameFor(model => model.Rental.GPSNavigation)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-check">
+                                <label class="form-check-label">
+                                    <input class="form-check-input" asp-for="Rental.InfantAndChildSeats" /> @Html.DisplayNameFor(model => model.Rental.InfantAndChildSeats)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="submit" value="Book Now!" class="btn btn-success w-100" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <a asp-action="Index" class="btn btn-light w-100"><i class="fa-solid fa-angle-left"></i> Choose Another Type</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
