@@ -68,7 +68,7 @@ namespace JiggysCarRental.Controllers
                 rentalViewModel.Rental.RentCost = RentalViewModel.Vehicle.RentCost;
                 _context.Add(rentalViewModel.Rental);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home", null);
             }
             Console.WriteLine("modelstate InValid");
             return View(RentalViewModel);
@@ -104,20 +104,20 @@ namespace JiggysCarRental.Controllers
                 Console.WriteLine("Modelstate Valid");
                 var files = HttpContext.Request.Form.Files;
                 string webroot = _webHostEnvironment.WebRootPath;
+                string uploadpath = webroot + AppConst.UploadPath;
+                if (!Directory.Exists(uploadpath))
+                {
+                    Directory.CreateDirectory(uploadpath);
+                }
+                string fileName = Guid.NewGuid().ToString();
+                string ext = Path.GetExtension(files[0].FileName);
+                using (var fs = new FileStream(Path.Combine(uploadpath, fileName + ext), FileMode.Create))
+                {
+                    files[0].CopyTo(fs);
+                }
+                vehicle.Image = fileName + ext;
                 if (vehicle.Id == 0)
                 {
-                    string uploadpath = webroot + AppConst.UploadPath;
-                    if (!Directory.Exists(uploadpath))
-                    {
-                        Directory.CreateDirectory(uploadpath);
-                    }
-                    string fileName = Guid.NewGuid().ToString();
-                    string ext = Path.GetExtension(files[0].FileName);
-                    using (var fs = new FileStream(Path.Combine(uploadpath, fileName + ext), FileMode.Create))
-                    {
-                        files[0].CopyTo(fs);
-                    }
-                    vehicle.Image = fileName + ext;
                     vehicle.StartDateAvailable = DateTime.Now;
                     _context.Add(vehicle);
                 }
