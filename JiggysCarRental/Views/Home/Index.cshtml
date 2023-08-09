@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<JiggysCarRental.Models.Vehicle>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -26,226 +28,44 @@
         <!-- Single item -->
         <div class="carousel-item active">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fas fa-car fa-fw fa-6x"></i>
+                <div class="row gy-5">
+                    @foreach (var item in Model)
+                     {
+                        <div class="col-lg-4">
+                            <div class="container">
+                                <div class="card">
+                                    <div class="slide slide1">
+                                        <div class="content">
+                                            <div class="icon bg-success">
+                                                <img src="/images/vehicles/@Html.DisplayFor(modelItem => item.Image)" class="img-thumbnail" alt="...">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>Compact</h3><p>$22/day or $132/week</p>
-                                        <br />
-                                        <a asp-controller="Vehicle" asp-action="Details" asp-route-id="1" class="btn btn-success">See Item</a>
+                                    <div class="slide slide2">
+                                        <div class="content">
+                                            <h3>@Html.DisplayFor(modelItem => item.VehicleName)</h3><p>$ @Html.DisplayFor(modelItem => item.RentCost)/day</p>
+                                            <br />
+                                            <a asp-controller="Vehicle" asp-action="Details" asp-route-id="@item.Id" class="btn btn-success">See Item</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fa-solid fa-car-side fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>Economy</h3><p>$30/day or $180/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fas fa-car fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>Standard</h3><p>$33/day or $198/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                     }
                 </div>
-            </div>
         </div>
     </div>
-    <div class="carousel-inner py-4">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fas fa-car fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>Full-Size</h3><p>$35/day or $210/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fa-solid fa-taxi fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>Intermediate SUV</h3><p>$50/day or $300/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fas fa-car fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>SUV</h3><p>$60/day or $360/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-    <div class="carousel-inner py-4">
-        <!-- Single item -->
-        <div class="carousel-item active">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fas fa-car fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>Luxury SUV</h3><p>$65/day or $390/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fa-solid fa-van-shuttle fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>Minivan</h3><p>$60/day or $360/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="container">
-                            <div class="card">
-                                <div class="slide slide1">
-                                    <div class="content">
-                                        <div class="icon bg-success">
-                                            <i class="fa-solid fa-van-shuttle fa-fw fa-6x"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slide slide2">
-                                    <div class="content">
-                                        <h3>14-seater Bus</h3><p>$80/day or $480/week</p>
-                                        <br />
-                                        <a href="#" class="btn btn-success">See Item</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Carousel wrapper -->
-
 <style>
 
-    .card{
+    .card {
         width: 302px;
     }
+
     .bg2 {
         background-color: #F2F5F7;
     }
+
     .bg-img {
         background-image: url('/images/bg.png');
         background-repeat: no-repeat;
@@ -286,21 +106,21 @@
         background: #2c73df;
     }
 
-    .icon{
+    .icon {
         color: white;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-        .container .card .icon .fa {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 80px;
-            color: #fff;
-        }
+    .container .card .icon .fa {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 80px;
+        color: #fff;
+    }
 
     .container .card .slide {
         width: 300px;
