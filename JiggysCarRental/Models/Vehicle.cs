@@ -12,18 +12,18 @@ namespace JiggysCarRental.Models
 
         [Column(TypeName = "nvarchar(100)")]
         [DisplayName("Vehicle Name")]
-        public string VehicleName { get; set; }
+        public string? VehicleName { get; set; }
 
         [DisplayName("Vehicle Image")]
         public string? Image { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
         [DisplayName("Details")]
-        public string Details { get; set; }
+        public string? Details { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
         [DisplayName("Rent Cost")]
-        public string RentCost { get; set; }
+        public string? RentCost { get; set; }
 
         [DisplayName("Number Of Passengers")]
         public int NumberOfPassengers { get; set; }

@@ -51,6 +51,30 @@ namespace JiggysCarRental.Controllers
             return View(RentalViewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(int? id, RentalViewModel rentalViewModel)
+        {
+            RentalViewModel RentalViewModel = new()
+            {
+                Vehicle = await _context.Vehicles
+                            .FirstOrDefaultAsync(m => m.Id == id),
+                Rental = new Rental()
+            };
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine("modelstate Valid");
+                rentalViewModel.Rental.VehicleName = RentalViewModel.Vehicle.VehicleName;
+                rentalViewModel.Rental.RentCost = RentalViewModel.Vehicle.RentCost;
+                _context.Add(rentalViewModel.Rental);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            Console.WriteLine("modelstate InValid");
+            return View(RentalViewModel);
+        }
+
+
         // GET: Vehicle/Edit/5
         public IActionResult Upsert(int id = 0)
         {
@@ -104,19 +128,6 @@ namespace JiggysCarRental.Controllers
             }
             Console.WriteLine("Modelstate Invalid");
             return View(vehicle);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Details(RentalViewModel rentalViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(rentalViewModel.Rental);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(rentalViewModel.Rental);
         }
 
         // GET: Vehicle/Delete/5

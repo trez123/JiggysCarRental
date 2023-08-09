@@ -45,9 +45,12 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Rental/Create
-        public IActionResult Create()
+        public IActionResult Upsert(int id = 0)
         {
-            return View();
+            if (id == 0)
+                return View(new Rental());
+            else
+                return View(_context.Rentals.Find(id));
         }
 
         // POST: Rental/Create
@@ -55,63 +58,17 @@ namespace JiggysCarRental.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TransactionId,VehicleName,RentCost,PickupDate,ReturnDate,GPSNavigation,InfantAndChildSeats")] Rental rental)
+        public async Task<IActionResult> Upsert([Bind("TransactionId,VehicleName,RentCost,PickupDate,ReturnDate,GPSNavigation,InfantAndChildSeats")] Rental rental)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(rental);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(rental);
-        }
-
-        // GET: Rental/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Rentals == null)
-            {
-                return NotFound();
-            }
-
-            var rental = await _context.Rentals.FindAsync(id);
-            if (rental == null)
-            {
-                return NotFound();
-            }
-            return View(rental);
-        }
-
-        // POST: Rental/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TransactionId,VehicleName,RentCost,PickupDate,ReturnDate,GPSNavigation,InfantAndChildSeats")] Rental rental)
-        {
-            if (id != rental.TransactionId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (rental.TransactionId == 0)
                 {
+                    _context.Add(rental);
+                }
+                else
                     _context.Update(rental);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RentalExists(rental.TransactionId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(rental);

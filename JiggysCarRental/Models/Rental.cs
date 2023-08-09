@@ -12,11 +12,11 @@ namespace JiggysCarRental.Models
 
         [Column(TypeName = "nvarchar(100)")]
         [DisplayName("Vehicle Name")]
-        public string VehicleName { get; set; }
+        public string? VehicleName { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         [DisplayName("Rent Cost")]
-        public string RentCost { get; set; }
+        public string? RentCost { get; set; }
 
         [DisplayName("Pickup Date")]
         [DisplayFormat(DataFormatString = "{0:MMM-dd-yy}")]

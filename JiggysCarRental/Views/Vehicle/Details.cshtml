@@ -73,8 +73,6 @@
                     <div class="container">
                         <div class="row">
                             <div class="col mt-4">
-                                <input asp-for="Vehicle.VehicleName" class="form-control" hidden />
-                                <input asp-for="Vehicle.RentCost" class="form-control" hidden />
                                 <div class="form-group">
                                     <label asp-for="Rental.PickupDate" class="control-label"></label>
                                     <input asp-for="Rental.PickupDate" class="form-control" max="@Model.Vehicle.EndDateAvailable.ToString("yyyy-MM-ddTHH:mm")" min="@Model.Vehicle.StartDateAvailable.ToString("yyyy-MM-ddTHH:mm")" />
@@ -114,7 +112,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <a asp-action="Index" class="btn btn-light w-100"><i class="fa-solid fa-angle-left"></i> Choose Another Type</a>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-light w-100"><i class="fa-solid fa-angle-left"></i> Choose Another Type</a>
                         </div>
                     </div>
                 </form>
