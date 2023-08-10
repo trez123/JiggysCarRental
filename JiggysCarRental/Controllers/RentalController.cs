@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JiggysCarRental.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JiggysCarRental.Controllers
 {
+    [Authorize]
     public class RentalController : Controller
     {
         private readonly CarDbContext _context;

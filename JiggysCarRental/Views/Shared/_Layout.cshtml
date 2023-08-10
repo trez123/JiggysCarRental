@@ -26,20 +26,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-2">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">BOOK NOW</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">ABOUT US</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">CONTACT US</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">PRIVACY</a>
-                        </li>
-                    </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -55,16 +41,14 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">HOME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">BOOK NOW</a>
+                        <a class="nav-link text-dark" asp-controller="Rental" asp-action="Index">BOOKINGS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">PRICING</a>
+                        <a class="nav-link text-dark" asp-controller="Vehicle" asp-action="Index">VEHICLES</a>
                     </li>
+                    }
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">ABOUT US</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">CONTACT US</a>
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">PRIVACY</a>
                     </li>
                 </ul>
             </div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JiggysCarRental.Models;
 using JiggysCarRental.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JiggysCarRental.Controllers
 {
@@ -22,6 +23,7 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Vehicle
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Vehicles != null ? 
@@ -76,6 +78,7 @@ namespace JiggysCarRental.Controllers
 
 
         // GET: Vehicle/Edit/5
+        [Authorize]
         public IActionResult Upsert(int id = 0)
         {
             if (id == 0)
@@ -96,6 +99,7 @@ namespace JiggysCarRental.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Upsert(int id,[Bind("Id,VehicleName,Image,Details,RentCost,NumberOfPassengers,NumberOLargeBags,UsbAdapter,ReverseCamera,PushStart,Bluetooth,ToolsControl,SteeringControl,ThermalControl,HeatedSeat,AutomaticTransmission,FourWheelDrive,LeatherSeats,Aux,StartDateAvailable,EndDateAvailable")] Vehicle vehicle)
         {
 
@@ -131,6 +135,7 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Vehicle/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vehicles == null)
@@ -151,6 +156,7 @@ namespace JiggysCarRental.Controllers
         // POST: Vehicle/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Vehicles == null)
