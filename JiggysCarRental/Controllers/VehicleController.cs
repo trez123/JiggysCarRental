@@ -23,7 +23,6 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Vehicle
-        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Vehicles != null ? 
@@ -78,7 +77,7 @@ namespace JiggysCarRental.Controllers
 
 
         // GET: Vehicle/Edit/5
-        [Authorize]
+        [Authorize (Roles = "Admin")]
         public IActionResult Upsert(int id = 0)
         {
             if (id == 0)
@@ -99,7 +98,7 @@ namespace JiggysCarRental.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize]
+        [Authorize (Roles = "Admin")]
         public async Task<IActionResult> Upsert(int id,[Bind("Id,VehicleName,Image,Details,RentCost,NumberOfPassengers,NumberOLargeBags,UsbAdapter,ReverseCamera,PushStart,Bluetooth,ToolsControl,SteeringControl,ThermalControl,HeatedSeat,AutomaticTransmission,FourWheelDrive,LeatherSeats,Aux,StartDateAvailable,EndDateAvailable")] Vehicle vehicle)
         {
 
@@ -135,7 +134,7 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Vehicle/Delete/5
-        [Authorize]
+        [Authorize (Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vehicles == null)

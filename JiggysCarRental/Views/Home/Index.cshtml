@@ -4,20 +4,22 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center min-vh-100 bg-img p-5">
+<div class="text-center min-vh-100 bg-img">
+    <div class="bg-2 p-5">
     <div class="d-flex text-light min-vh-100">
         <div class="w-50 d-flex justify-content-center align-items-center">
             <div>
-                <p class="subtitle gray-text">Welcome to Jamaica!</p>
-                <h1 class="title dark-gray-text">Welcome to Jiggy’s Car Rental</h1>
+                <p class="subtitle text-light">Welcome to Jamaica!</p>
+                <h1 class="title"><span class="text-light">Welcome to </span><span class="text-success">Jiggy’s Car Rental</span></h1>
             </div>
         </div>
         <div class="w-50 d-flex">
             <div class="m-auto">
-                <button class="btn dark-gray-bg" style="color: white;">Start Now</button>
-                <button class="btn btn2 ">Learn More  <i class="fa-solid fa-circle-play"></i></button>
+                <button class="btn dark-gray-bg text-success">Start Now</button>
+                <button class="btn btn2 text-light">Learn More  <i class="fa-solid fa-circle-play"></i></button>
             </div>
         </div>
+    </div>
     </div>
 </div>
 
@@ -67,10 +69,14 @@
     }
 
     .bg-img {
-        background-image: url('/images/bg.png');
+        background-image: url('/images/car-bg.jpg');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+    }
+
+    .bg-2{
+        background-color: rgba(0,0,0,0.4);
     }
 
     p, h1 {
@@ -88,8 +94,7 @@
     }
 
     .btn2 {
-        border: 1px solid #505D68;
-        color: #505D68;
+        border: 1px solid white;
         margin-left: 2rem;
     }
 
@@ -198,7 +203,7 @@
     }
 
     .dark-gray-bg {
-        background-color: #505D68;
+        background-color: white;
     }
 </style>
 

@@ -21,6 +21,7 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Rental
+        [Authorize (Roles = "Employee")]
         public async Task<IActionResult> Index()
         {
               return _context.Rentals != null ? 
@@ -29,6 +30,7 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Rental/Details/5
+        [Authorize (Roles = "Employee")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Rentals == null)
@@ -77,6 +79,7 @@ namespace JiggysCarRental.Controllers
         }
 
         // GET: Rental/Delete/5
+        [Authorize (Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Rentals == null)
@@ -97,6 +100,7 @@ namespace JiggysCarRental.Controllers
         // POST: Rental/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize (Roles = "Employee")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Rentals == null)

@@ -9,12 +9,18 @@
     </li>
     @if (SignInManager.IsSignedIn(User))
     {
+        if(User.IsInRole("Employee"))
+        {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Rental" asp-action="Index">BOOKINGS</a>
         </li>
+        }
+        @if(User.IsInRole("Admin"))
+        {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Vehicle" asp-action="Index">VEHICLES</a>
         </li>
+        }
     }
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">PRIVACY</a>
